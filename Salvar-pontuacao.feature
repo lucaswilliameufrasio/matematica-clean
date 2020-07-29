@@ -4,12 +4,12 @@ Funcionalidade: Salvar Pontuação
 
     Como um jogador online
     Quero que o sistema salve minha pontuação
-    Para eu poder ver meu desempenho e subir no ranking
+    Para que eu possa ver meu desempenho e subir no ranking
 
 Cenário: Salvar Pontuação no banco através da API
 
 Dado que o jogador tenha conexão com a internet
-Quando o jadador finaliza uma partida
+Quando o jogador finaliza uma partida
 Então o sistema deve salvar sua pontuação no banco de dados através de uma API
 E mostrar a pontuação para o jagodor
 
