@@ -27,7 +27,7 @@ Característica: Jagador Offline
 Cenário: Perda de conexão no meio da partida
 
 Dado que o jogador perda a conexão no meio da partida
-Então o sistema deve emitir uma mensagem ao jagador 
+Então o sistema deve emitir uma mensagem ao jogador 
 E sair do jogo mantendo a pontuação anterior 
 
 
