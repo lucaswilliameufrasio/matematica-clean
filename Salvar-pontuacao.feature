@@ -13,6 +13,11 @@ Quando o jogador finaliza uma partida
 Então o sistema deve salvar sua pontuação no banco de dados através de uma API
 E mostrar a pontuação para o jagodor
 
+Dado que o jogador tenha conexão com a internet
+Quando o jogador interrompe uma partida sem finaliza-la 
+E presionando o botão voltar do aparelho
+Então o sistema não salva sua pontuação atual 
+
 Característica: Jagador Offline
 
     Como um jogador offiline
