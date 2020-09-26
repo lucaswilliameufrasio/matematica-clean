@@ -18,4 +18,8 @@
 3. Retorna erro **403** se o operation_id passado na URL for inválido
 4. Retorna erro **403** se os dados enviados pelo cliente for inválida
 5. Retorna erro **500** se der erro ao tentar criar o resultado do jogo
+<<<<<<< HEAD
 6. Retorna erro **500** se der erro ao tentar carregar a operação
+=======
+6. Retorna erro **500** se der erro ao tentar carregar a operação
+>>>>>>> 200ef9c... docs: update save game result requirements
