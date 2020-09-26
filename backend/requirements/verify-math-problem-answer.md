@@ -1,0 +1,16 @@
+# Verificar Resposta do Problema Matemático
+
+> ## Caso de sucesso
+
+1. Recebe uma requisição do tipo **POST** na rota **/api/problems/{problem_id}/answer**
+2. Valida se a requisição foi feita por um **usuário**
+3. Valida o parâmetro **problem_id**
+3. Retorna **200** com a confirmação ou não da resposta
+
+> ## Exceções
+
+1. Retorna erro **404** se a API não existir
+2. Retorna erro **403** se não for um usuário
+3. Retorna erro **403** se o problem_id passado na URL for inválido
+3. Retorna erro **500** se der erro ao tentar carregar o problema matemático
+3. Retorna erro **500** se der erro ao tentar verificar a resposta do problema matemático
