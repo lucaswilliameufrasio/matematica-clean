@@ -11,14 +11,14 @@ Cenário: Salvar Pontuação no banco através da API
 Dado que o jogador tenha conexão com a internet
 Quando o jogador finaliza uma partida
 Então o sistema deve salvar sua pontuação no banco de dados através de uma API
-E mostrar a pontuação para o jagodor
+E mostrar a pontuação para o jogodor
 
 Dado que o jogador tenha conexão com a internet
 Quando o jogador interrompe uma partida sem finaliza-la 
 E presionando o botão voltar do aparelho
 Então o sistema não salva sua pontuação atual 
 
-Característica: Jagador Offline
+Característica: Jogador Offline
 
     Como um jogador offiline
     Quero que o sistema não salve minha pontuação 
