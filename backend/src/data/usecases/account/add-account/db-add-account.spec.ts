@@ -56,4 +56,11 @@ describe('DbAddAccount UseCase', () => {
 
     await expect(promise).rejects.toThrow()
   })
+
+  test('Should return an account on success', async () => {
+    const { sut, addAccountRepositorySpy } = makeSut()
+    const account = await sut.add(mockAddAccountParams())
+
+    expect(account).toEqual(addAccountRepositorySpy.accountModel)
+  })
 })
