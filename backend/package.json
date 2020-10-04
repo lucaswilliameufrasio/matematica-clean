@@ -15,7 +15,9 @@
   },
   "homepage": "https://github.com/lucaswilliameufrasio/matematica-clean#readme",
   "scripts": {
-    "test": "jest --runInBand --watch"
+    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
+    "test:verbose": "jest --passWithNoTests --runInBand",
+    "test:unit": "yarn test --watch -c jest-unit-config.js"
   },
   "devDependencies": {
     "@types/jest": "^26.0.14",
