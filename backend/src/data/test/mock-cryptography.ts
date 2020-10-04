@@ -1,7 +1,8 @@
 import { Hasher } from '@/data/protocols/cryptography/hasher'
+import faker from 'faker'
 
 export class HasherSpy implements Hasher {
-  digest = 'any_digest'
+  digest = faker.random.uuid()
   plaintext: string
 
   async hash (plaintext: string): Promise<string> {
