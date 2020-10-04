@@ -1,4 +1,4 @@
-import { HasherSpy } from '@/data/test/mock-cryptography'
+import { HasherSpy } from '@/data/test'
 import { DbAddAccount } from './db-add-account'
 
 describe('DbAddAccount UseCase', () => {
