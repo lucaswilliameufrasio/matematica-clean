@@ -1,36 +1,51 @@
-import { HasherSpy } from '@/data/test'
-import { mockAccountModel } from '@/domain/test'
 import { DbAddAccount } from './db-add-account'
+import { HasherSpy, AddAccountRepositorySpy } from '@/data/test'
+import { mockAddAccountParams } from '@/domain/test'
 
 type SutTypes = {
   sut: DbAddAccount
   hasherSpy: HasherSpy
+  addAccountRepositorySpy: AddAccountRepositorySpy
 }
 
 const makeSut = (): SutTypes => {
   const hasherSpy = new HasherSpy()
-  const sut = new DbAddAccount(hasherSpy)
+  const addAccountRepositorySpy = new AddAccountRepositorySpy()
+  const sut = new DbAddAccount(hasherSpy, addAccountRepositorySpy)
 
   return {
     sut,
-    hasherSpy
+    hasherSpy,
+    addAccountRepositorySpy
   }
 }
 
 describe('DbAddAccount UseCase', () => {
   test('Should call Hasher with correct password', async () => {
     const { sut, hasherSpy } = makeSut()
-    const accountParams = mockAccountModel()
-    await sut.add(accountParams)
+    const accountModel = mockAddAccountParams()
+    await sut.add(accountModel)
 
-    expect(hasherSpy.plaintext).toBe(accountParams.password)
+    expect(hasherSpy.plaintext).toBe(accountModel.password)
   })
 
   test('Should throw if Hasher throws', async () => {
     const { sut, hasherSpy } = makeSut()
     jest.spyOn(hasherSpy, 'hash').mockImplementationOnce(() => { throw new Error() })
-    const promise = sut.add(mockAccountModel())
+    const promise = sut.add(mockAddAccountParams())
 
     await expect(promise).rejects.toThrow()
+  })
+
+  test('Should call AddAccountRepository with correct values', async () => {
+    const { sut, hasherSpy, addAccountRepositorySpy } = makeSut()
+    const addAccountParams = mockAddAccountParams()
+    await sut.add(addAccountParams)
+
+    expect(addAccountRepositorySpy.addAccountParams).toEqual({
+      name: addAccountParams.name,
+      email: addAccountParams.email,
+      password: hasherSpy.digest
+    })
   })
 })
