@@ -1,4 +1,4 @@
-import { DbAddAccount } from '@/data/usecases/account/add-account/db-add-account'
+import { DbAddAccount } from '@/data/usecases'
 import { HasherSpy, AddAccountRepositorySpy, LoadAccountByEmailRepositorySpy } from '@/tests/data/mocks'
 import { mockAddAccountParams } from '@/tests/domain/mocks'
 import faker from 'faker'

@@ -1,5 +1,4 @@
-import { AddAccountRepository } from '@/data/protocols/db/account/add-account-repository'
-import { LoadAccountByEmailRepository } from '@/data/protocols/db/account/load-account-by-email-repository'
+import { AddAccountRepository, LoadAccountByEmailRepository } from '@/data/protocols'
 import { mockAddAccountResult } from '@/tests/domain/mocks'
 import faker from 'faker'
 

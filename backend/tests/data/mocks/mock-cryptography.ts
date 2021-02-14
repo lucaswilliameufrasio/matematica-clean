@@ -1,4 +1,4 @@
-import { Hasher } from '@/data/protocols/cryptography/hasher'
+import { Hasher } from '@/data/protocols'
 import faker from 'faker'
 
 export class HasherSpy implements Hasher {
