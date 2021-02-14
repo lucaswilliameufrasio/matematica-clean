@@ -1,6 +1,7 @@
 import { DbAddAccount } from '@/data/usecases/account/add-account/db-add-account'
 import { HasherSpy, AddAccountRepositorySpy, LoadAccountByEmailRepositorySpy } from '@/tests/data/mocks'
-import { mockAccountModel, mockAddAccountParams } from '@/tests/domain/mocks'
+import { mockAddAccountParams } from '@/tests/domain/mocks'
+import faker from 'faker'
 
 type SutTypes = {
   sut: DbAddAccount
@@ -13,7 +14,7 @@ const makeSut = (): SutTypes => {
   const hasherSpy = new HasherSpy()
   const addAccountRepositorySpy = new AddAccountRepositorySpy()
   const loadAccountByEmailRepositorySpy = new LoadAccountByEmailRepositorySpy()
-  loadAccountByEmailRepositorySpy.accountModel = null
+  loadAccountByEmailRepositorySpy.result = null
   const sut = new DbAddAccount(hasherSpy, addAccountRepositorySpy, loadAccountByEmailRepositorySpy)
 
   return {
@@ -65,12 +66,17 @@ describe('DbAddAccount UseCase', () => {
     const { sut, addAccountRepositorySpy } = makeSut()
     const account = await sut.add(mockAddAccountParams())
 
-    expect(account).toEqual(addAccountRepositorySpy.accountModel)
+    expect(account).toEqual(addAccountRepositorySpy.result)
   })
 
   test('Should return null if LoadAccountByEmailRepository not return null', async () => {
     const { sut, loadAccountByEmailRepositorySpy } = makeSut()
-    jest.spyOn(loadAccountByEmailRepositorySpy, 'loadByEmail').mockReturnValueOnce(Promise.resolve(mockAccountModel()))
+    const mockedAccount = {
+      id: faker.random.uuid(),
+      name: faker.name.findName(),
+      password: faker.internet.password()
+    }
+    jest.spyOn(loadAccountByEmailRepositorySpy, 'loadByEmail').mockReturnValueOnce(Promise.resolve(mockedAccount))
     const account = await sut.add(mockAddAccountParams())
 
     expect(account).toBeNull()
